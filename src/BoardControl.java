@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -7,34 +8,31 @@ public class BoardControl {
     // 1 is fence
     // 2 is mho
     // 3 is player
-    private int[][] board;
-    private HashSet<Point> randomPositionsFences = new HashSet<>();
+    private static int[][] board;
+    private static HashSet<Point> randomPositionsFences = new HashSet<>();
+    private static HashSet<Point> randomPositionsMhos = new HashSet<>();
 
-    public BoardControl(int height, int width) {
-        this.board = new int[height][width];
+    public static void init(int height, int width) {
+        board = new int[height][width];
     }
 
-    public int[][] getBoard() {
+    public static int[][] getBoard() {
         return board;
     }
 
-    public HashSet<Point> getRandomPositionsFences() {
+    public static HashSet<Point> getRandomPositionsFences() {
         return randomPositionsFences;
     }
 
-    public void setBoard(int[][] board) {
-        this.board = board;
+    public static HashSet<Point> getRandomPositionsMhos() {
+        return randomPositionsMhos;
     }
 
-    public void setRandomPositionsFences(HashSet<Point> randomPositionsFences) {
-        this.randomPositionsFences = randomPositionsFences;
+    public static int length() {
+        return getBoard().length;
     }
 
-    public int length() {
-        return this.getBoard().length;
-    }
-
-    public void spawnFences() {
+    public static void spawnFences() {
         Random ran = new Random();
 
         for (int i = 0; i < 20; i++) {
@@ -47,21 +45,21 @@ public class BoardControl {
         }
 
         for (int y = 0; y < 2; y++) {
-            for (int x = 0; x < this.length(); x++) {
+            for (int x = 0; x < length(); x++) {
                 if (y == 0) {
                     board[y][x] = 1;
                 } else {
-                    board[this.length() - 1][x] = 1;
+                    board[length() - 1][x] = 1;
                 }
             }
         }
 
-        for (int y = 1; y < this.length() - 1; y++) {
+        for (int y = 1; y < length() - 1; y++) {
             for (int x = 0; x < 2; x++) {
                 if (x == 0) {
                     board[y][x] = 1;
                 } else {
-                    board[y][this.length() - 1] = 1;
+                    board[y][length() - 1] = 1;
                 }
             }
         }
@@ -73,9 +71,28 @@ public class BoardControl {
         }
     }
 
-    public void print() {
-        for (int y = 0; y < this.length(); y++) {
-            for (int x = 0; x < this.length(); x++) {
+    public static void spawnMhos() {
+        Random ran = new Random();
+
+        for (int i = 0; i < 12; i++) {
+            Point pos = new Point(ran.nextInt(10) + 1, ran.nextInt(10) + 1);
+            if (!randomPositionsMhos.contains(pos) && !randomPositionsFences.contains(pos)) {
+                randomPositionsMhos.add(pos);
+            } else {
+                i--;
+            }
+        }
+
+        for (Point k : randomPositionsMhos) {
+            int x = (int) k.getX();
+            int y = (int) k.getY();
+            board[x][y] = 2;
+        }
+    }
+
+    public static void print() {
+        for (int y = 0; y < length(); y++) {
+            for (int x = 0; x < length(); x++) {
                 System.out.print(board[y][x]);
             }
             System.out.println();
