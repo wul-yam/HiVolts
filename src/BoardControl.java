@@ -118,4 +118,31 @@ public class BoardControl {
             System.out.println();
         }
     }
+
+    public static void updatePlayerPosition(char in) {
+        Random ran = new Random();
+
+        switch(in) {
+            case 'q':
+                randomPositionPlayer.setLocation(randomPositionPlayer.getX() - 1, randomPositionPlayer.getY() - 1); break;
+            case 'w':
+                randomPositionPlayer.setLocation(randomPositionPlayer.getX(), randomPositionPlayer.getY() - 1); break;
+            case 'e':
+                randomPositionPlayer.setLocation(randomPositionPlayer.getX() + 1, randomPositionPlayer.getY() - 1); break;
+            case 'a':
+                randomPositionPlayer.setLocation(randomPositionPlayer.getX() - 1, randomPositionPlayer.getY()); break;
+            case 's':
+                break;
+            case 'd':
+                randomPositionPlayer.setLocation(randomPositionPlayer.getX() + 1, randomPositionPlayer.getY()); break;
+            case 'z':
+                randomPositionPlayer.setLocation(randomPositionPlayer.getX() - 1, randomPositionPlayer.getY() + 1); break;
+            case 'x':
+                randomPositionPlayer.setLocation(randomPositionPlayer.getX(), randomPositionPlayer.getY() + 1); break;
+            case 'c':
+                randomPositionPlayer.setLocation(randomPositionPlayer.getX() + 1, randomPositionPlayer.getY() + 1); break;
+            case 'j':
+                randomPositionPlayer.setLocation(ran.nextInt(10) + 1, ran.nextInt(10) + 1); break;
+        }
+    }
 }
