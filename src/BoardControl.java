@@ -60,4 +60,13 @@ public class BoardControl {
             this.board[x][y] = 1;
         }
     }
+
+    public void print() {
+        for (int y = 0; y < this.length(); y++) {
+            for (int x = 0; x < this.length(); x++) {
+                System.out.print(this.board[y][x]);
+            }
+            System.out.println();
+        }
+    }
 }
