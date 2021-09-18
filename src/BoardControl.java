@@ -11,8 +11,7 @@ public class BoardControl {
     private HashSet<Point> randomPositionsFences = new HashSet<>();
 
     public BoardControl(int height, int width) {
-        int[][] board = new int[height][width];
-        System.out.println(1);
+        this.board = new int[height][width];
     }
 
     public int[][] getBoard() {
@@ -39,7 +38,7 @@ public class BoardControl {
         Random ran = new Random();
 
         for (int i = 0; i < 20; i++) {
-            Point pos = new Point(ran.nextInt(10), ran.nextInt(10));
+            Point pos = new Point(ran.nextInt(10) + 1, ran.nextInt(10) + 1);
             if (!randomPositionsFences.contains(pos)) {
                 randomPositionsFences.add(pos);
             } else {
@@ -48,7 +47,7 @@ public class BoardControl {
         }
 
         for (int y = 0; y < 2; y++) {
-            for (int x = 0; x < 10; x++) {
+            for (int x = 0; x < this.length(); x++) {
                 if (y == 0) {
                     board[y][x] = 1;
                 } else {
