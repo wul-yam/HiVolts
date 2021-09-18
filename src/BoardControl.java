@@ -28,6 +28,10 @@ public class BoardControl {
         return randomPositionsMhos;
     }
 
+    public static Point getRandomPositionPlayer() {
+        return randomPositionPlayer;
+    }
+
     public static int length() {
         return getBoard().length;
     }
