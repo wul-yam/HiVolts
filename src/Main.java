@@ -3,6 +3,7 @@ public class Main {
         BoardControl.init(12, 12);
         BoardControl.spawnFences();
         BoardControl.spawnMhos();
+        BoardControl.spawnPlayer();
         BoardControl.print();
     }
 }

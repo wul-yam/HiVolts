@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 
@@ -11,6 +10,7 @@ public class BoardControl {
     private static int[][] board;
     private static HashSet<Point> randomPositionsFences = new HashSet<>();
     private static HashSet<Point> randomPositionsMhos = new HashSet<>();
+    private static Point randomPositionPlayer = new Point();
 
     public static void init(int height, int width) {
         board = new int[height][width];
@@ -88,6 +88,22 @@ public class BoardControl {
             int y = (int) k.getY();
             board[x][y] = 2;
         }
+    }
+
+    public static void spawnPlayer() {
+        Random ran = new Random();
+
+        while (true) {
+            Point pos = new Point(ran.nextInt(10) + 1, ran.nextInt(10) + 1);
+            if (!randomPositionsMhos.contains(pos) && !randomPositionsFences.contains(pos)) {
+                randomPositionPlayer = pos;
+                break;
+            }
+        }
+
+        int x = (int) randomPositionPlayer.getX();
+        int y = (int) randomPositionPlayer.getY();
+        board[x][y] = 3;
     }
 
     public static void print() {
