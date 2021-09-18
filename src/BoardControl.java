@@ -8,13 +8,26 @@ public class BoardControl {
     // 2 is mho
     // 3 is player
     private int[][] board;
+    private HashSet<Point> randomPositionsFences = new HashSet<>();
 
-    public BoardControl(int[][] board) {
-        this.board = board;
+    public BoardControl(int height, int width) {
+        int[][] board = new int[height][width];
     }
 
     public int[][] getBoard() {
         return board;
+    }
+
+    public HashSet<Point> getRandomPositionsFences() {
+        return randomPositionsFences;
+    }
+
+    public void setBoard(int[][] board) {
+        this.board = board;
+    }
+
+    public void setRandomPositionsFences(HashSet<Point> randomPositionsFences) {
+        this.randomPositionsFences = randomPositionsFences;
     }
 
     public int length() {
@@ -23,7 +36,6 @@ public class BoardControl {
 
     public void spawnFences() {
         Random ran = new Random();
-        HashSet<Point> randomPositionsFences = new HashSet<>();
 
         for (int i = 0; i < 20; i++) {
             Point pos = new Point(ran.nextInt(10), ran.nextInt(10));
