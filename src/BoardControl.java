@@ -12,6 +12,7 @@ public class BoardControl {
 
     public BoardControl(int height, int width) {
         int[][] board = new int[height][width];
+        System.out.println(1);
     }
 
     public int[][] getBoard() {
@@ -49,9 +50,9 @@ public class BoardControl {
         for (int y = 0; y < 2; y++) {
             for (int x = 0; x < 10; x++) {
                 if (y == 0) {
-                    this.board[y][x] = 1;
+                    board[y][x] = 1;
                 } else {
-                    this.board[this.length() - 1][x] = 1;
+                    board[this.length() - 1][x] = 1;
                 }
             }
         }
@@ -59,9 +60,9 @@ public class BoardControl {
         for (int y = 1; y < this.length() - 1; y++) {
             for (int x = 0; x < 2; x++) {
                 if (x == 0) {
-                    this.board[y][x] = 1;
+                    board[y][x] = 1;
                 } else {
-                    this.board[y][this.length() - 1] = 1;
+                    board[y][this.length() - 1] = 1;
                 }
             }
         }
@@ -69,14 +70,14 @@ public class BoardControl {
         for (Point k : randomPositionsFences) {
             int x = (int) k.getX();
             int y = (int) k.getY();
-            this.board[x][y] = 1;
+            board[x][y] = 1;
         }
     }
 
     public void print() {
         for (int y = 0; y < this.length(); y++) {
             for (int x = 0; x < this.length(); x++) {
-                System.out.print(this.board[y][x]);
+                System.out.print(board[y][x]);
             }
             System.out.println();
         }
