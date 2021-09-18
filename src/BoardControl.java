@@ -119,8 +119,19 @@ public class BoardControl {
         }
     }
 
+    public static void resetPlayerPosition(Point p) {
+        int x = (int) p.getX();
+        int y = (int) p.getY();
+        board[y][x] = 0;
+        int x1 = (int) randomPositionPlayer.getX();
+        int y1 = (int) randomPositionPlayer.getY();
+        board[y1][x1] = 3;
+    }
+
     public static void updatePlayerPosition(char in) {
         Random ran = new Random();
+
+        Point temp = new Point((int) randomPositionPlayer.getX(), (int) randomPositionPlayer.getY());
 
         switch(in) {
             case 'q':
@@ -144,5 +155,7 @@ public class BoardControl {
             case 'j':
                 randomPositionPlayer.setLocation(ran.nextInt(10) + 1, ran.nextInt(10) + 1); break;
         }
+
+        resetPlayerPosition(temp);
     }
 }

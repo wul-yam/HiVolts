@@ -5,5 +5,8 @@ public class Main {
         BoardControl.spawnMhos();
         BoardControl.spawnPlayer();
         BoardControl.print();
+        System.out.println();
+        BoardControl.updatePlayerPosition('d');
+        BoardControl.print();
     }
 }
